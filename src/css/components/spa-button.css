@@ -1,0 +1,88 @@
+button {
+  --itp-button-border-radius: 4px;
+  --itp-button-min-width: 100px;
+
+  /* ### main color of the button ### */
+  --itp-button-background-color: #0d6efd;
+
+  --itp-button-background-color-disabled: color-mix(in srgb, var(--itp-button-background-color) 60%, #000);
+  --itp-button-text-color: rgba(255, 255, 255, 0.9);
+  --itp-button-border-color: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* ### the default padding ### */
+  --itp-button-padding: 6px 16px;
+
+  /* ### better effects on text ### */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+
+  /* ### compact buttons don't follow the min width- usefull for icons ### */
+  &.compact {
+    --itp-button-min-width: auto !important;
+    --itp-button-padding: 0 3px;
+  }
+
+  &.icon {
+    --itp-button-min-width: unset;
+    --itp-button-padding: 6px;
+  }
+
+  &.secondary {
+    --itp-button-background-color: #6c757d !important;
+  }
+
+  &.success {
+    --itp-button-background-color: #198754 !important;
+  }
+
+  &.danger {
+    --itp-button-background-color: #dc3545 !important;
+  }
+
+  &.warning {
+    --itp-button-background-color: #ffc107 !important;
+    --itp-button-text-color: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  &.info {
+    --itp-button-background-color: #25cff2 !important;
+    --itp-button-text-color: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  &.light {
+    --itp-button-background-color: snow !important;
+    --itp-button-text-color: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  &.dark {
+    --itp-button-background-color: #000000E0 !important;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--itp-button-background-color) 85%, #FFF);
+    }
+  }
+
+  position: relative;
+  border: var(--itp-button-border-color);
+  border-radius: var(--itp-button-border-radius);
+  min-width: var(--itp-button-min-width);
+  background-color: var(--itp-button-background-color);
+  color: var(--itp-button-text-color);
+  padding: var(--itp-button-padding);
+  transition: var(--itp-button-transition-time);
+
+  +button {
+    margin-left: 0.5rem;
+  }
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--itp-button-background-color) 85%, #000);
+  }
+
+  &[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--itp-button-background-color-disabled);
+  }
+}
