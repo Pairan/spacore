@@ -1,0 +1,38 @@
+spa-vscroll-table,
+.container {
+    height: 90vh;
+    display: block;
+}
+
+.viewport {
+    height: calc(100% - 64px - 1rem);
+    overflow: auto;
+}
+
+.viewport-content {
+    display: block;
+    /*
+    padding: 0.5rem;
+    width: calc(100vw - 50px);
+    */
+}
+
+.viewport-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    contain: content;
+}
+
+.viewport-scroll-spacer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    transform-origin: 0 0;
+}
+
+.spa-table-vscroll thead {
+    position: sticky;
+    z-index: 1;
+}

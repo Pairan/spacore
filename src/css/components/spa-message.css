@@ -1,0 +1,124 @@
+/* ### Message layer ### */
+#spaMessage {
+    width: auto;
+    min-height: 3em;
+    z-index: 2000;
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box;
+    line-height: 3em !important;
+    font-size: 1.2em !important;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#spaMessage .alert {
+    padding: 0 1em;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    position: relative;
+    display: inline-block;
+}
+
+#spaMessage .message-in {
+    animation-name: message-in;
+    animation-duration: 250ms;
+    animation-timing-function: ease-in-out;
+}
+
+#spaMessage .message-out {
+    animation-name: message-out;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes message-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+
+}
+
+
+@keyframes message-in {
+    from {
+        top: 500px;
+    }
+
+    to {
+        top: 0;
+    }
+}
+
+#spaMessage button {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 0 5px 0 2px;
+    color: rgba(0, 0, 0, .3);
+    line-height: normal;
+    min-width: unset;
+}
+
+#spaMessage button.close {
+    padding: 5px;
+}
+
+#spaMessage button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ### colors inspired by bootstrap - default is success ### */
+/* no DEFAULTS as it changes the UX to be misunderstood
+#spaMessage {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+*/
+#spaMessage .alert-info {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+#spaMessage .alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+#spaMessage .alert-secondary {
+    color: #383d41;
+    background-color: #e2e3e5;
+    border-color: #d6d8db;
+}
+
+/*
+#spaMessage .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+*/
+
+#spaMessage .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+#spaMessage .alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}

@@ -1,0 +1,46 @@
+spa-chip {
+    /* ### main color of the chip ### */
+    --itp-button-background-color: #0d6efd;
+    --itp-button-text-color: rgba(255, 255, 255, 0.9);
+    --itp-button-border-color: 1px solid rgba(255, 255, 255, 0.1);
+
+    background-color: var(--itp-button-background-color);
+    color: var(--itp-button-text-color);
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 16px;
+    padding: 0 0.5rem;
+    font-size: .9rem;
+    border: var(--itp-button-border-color);
+}
+
+spa-chip>img {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+}
+
+spa-chip>.text {
+    line-height: 1.5;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding: 0 1rem;
+}
+
+spa-chip>i {
+    margin-left: 0.5rem;
+
+}
+
+spa-chip>i.remover {
+    cursor: pointer;
+    opacity: .5;
+    transition: all 0.2s ease-in-out;
+}
+
+spa-chip>i.remover:hover {
+    opacity: 1;
+}

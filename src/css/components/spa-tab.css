@@ -1,0 +1,57 @@
+/* ### tab manager layout ### */
+.spa-tab {
+    border-bottom: 2px solid rgba(100, 100, 100, 0.75);
+    padding: 0 10px;
+    font-size: 1.3em;
+    line-height: 1.3em;
+    height: 24px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.spa-tab .spa-tab-items {
+    position: absolute;
+    width: 99%;
+    height: 24px;
+}
+
+.spa-tab .spa-tab-items>span {
+    border-bottom: 2px solid transparent;
+    padding: 0 2%;
+    display: inline-block;
+    height: 24px;
+    cursor: pointer;
+    position: relative;
+}
+
+.spa-tab .spa-tab-items>span>notify {
+    visibility: hidden;
+
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.6);
+    color: white;
+    border-radius: 22px;
+    font-size: 0.7em;
+    display: inline-block;
+    text-align: center;
+    line-height: 16px;
+    position: absolute;
+    right: 2%;
+    top: -5px;
+    width: 0;
+    height: 0;
+    transition: all 100ms ease-in-out;
+    transform: scale(0);
+    width: 16px;
+    height: 16px;
+}
+
+.spa-tab .spa-tab-items>span.notify>notify {
+    visibility: visible;
+    transform: scale(1);
+}
+
+.spa-tab .spa-tab-items>span.current {
+    border-bottom-color: deepskyblue;
+    cursor: default;
+}
