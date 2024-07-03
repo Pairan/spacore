@@ -53,6 +53,7 @@ app.windowManager = new WindowManager(
         parent: app.view
     }
 );
+
 // ### about themes ... ###
 app.setTheme("dark");
 app.setTheme("light"); // ### this is the default one
