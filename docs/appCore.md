@@ -53,6 +53,9 @@ app.windowManager = new WindowManager(
         parent: app.view
     }
 );
+// ### about themes ... ###
+app.setTheme("dark");
+app.setTheme("light"); // ### this is the default one
 
 ```
 Above is something you most likey are going to use: the AppCore that features a `ComponententManager` and a `WindowManager`. The settings for `AppCore` in this example defines a selector which otherwise will be `spa-app` (`<spa-app></spa-app>`). As an initial title we wish to have *"my SPA title"*. This can be changed with the `title` get/setter.
@@ -72,10 +75,6 @@ window.message = message;
 
 // ### let's change the app title ###
 app.title = "welcome SPA";
-
-// ### about themes ... ###
-app.setTheme("dark");
-app.setTheme("light"); // ### this is the default one
 ```
 
 ### Theming 
