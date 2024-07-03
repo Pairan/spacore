@@ -21,6 +21,9 @@ export class AppCoreSettings {
 export class AppCore {
     #observer = null;
     #titleTag;
+    #currentTheme = "light";
+
+
     constructor(settings) {
 
         if (settings.hasOwnProperty("name")) {
@@ -41,8 +44,31 @@ export class AppCore {
         if (settings.hasOwnProperty("title")) {
             this.title = settings.title;
         }
-    }
 
+        // ### preferred theme? light is default, check for dark ###
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            this.#currentTheme = "dark";
+        }
+        // ### check for a save preference ###
+        if (localStorage.getItem('theme')) {
+            this.#currentTheme = localStorage.getItem('theme');
+        }
+
+        // ### set theme ###
+        this.setTheme(this.#currentTheme);
+    }
+    setTheme(which) {
+        if (which) {
+            this.#currentTheme = which;
+        }
+
+        localStorage.setItem('theme', this.#currentTheme);
+
+        if (which == "light") {
+            this.#currentTheme = "";
+        }
+        document.documentElement.className = this.#currentTheme;
+    }
     get title() {
         if (!this.#titleTag)
             return;
