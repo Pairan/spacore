@@ -5,6 +5,8 @@ The `AppCore` further offers a notification system, that let's the developer reg
 
 A simple `<script type="module" src="">` tag within the main HTML document gets the `AppCore` loaded. 
 
+Further it supports switching between light and dark theme and makes changes persistent by saving the choice in the `localStorage` (key `theme`).
+
 Next we place a reference in the main HTML document to bootstrap the spa app:
 ```html
 <!DOCTYPE html>
@@ -70,7 +72,44 @@ window.message = message;
 
 // ### let's change the app title ###
 app.title = "welcome SPA";
+
+// ### about themes ... ###
+app.setTheme("dark");
+app.setTheme("light"); // ### this is the default one
 ```
+
+### Theming 
+The method `setTheme()` let's you switch forth and back between the themes. Default is `"light"` and can be overwritten by any other phrase, that describes your css theme. It's advised to use css variables for that. Here's an example:
+```css
+:root {    
+    /* ### DEFAULT is light mode ### */
+
+    /* ### Content area ### */
+    --content-bg-color: #f3f3f3;
+    --content-heading-color: #090909;
+}
+
+/* ### overwrite vars for dark mode ### */
+.dark {
+    /* ### Content area ### */
+    --content-bg-color: #202020;
+    --content-heading-color: #f3f3f3;
+}
+
+body {
+    background-color: var(--content-bg-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--content-heading-color);
+}
+```
+This should pave the way for themes of any kind.
+
 
 ### Subcribe to a token and get notified!
 As mentioned in the introduction we can add subscribeable tokens and get notified as these are triggered. Technically we use the `Observeable` object (which is *NOT related to RXJS*).
