@@ -125,7 +125,6 @@ export class TabManager {
         // ### pusher text: show a tab on click of a pusher ###
         if (parent.classList.contains("pusher")) {
             this.show(parent.name);
-            return;
         }
     }
     constructor(tabNode, viewContainer) {

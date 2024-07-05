@@ -28,17 +28,18 @@ export class ComponentManager {
             // ### load the components ###
             dynComponents.forEach(comp => {
 
+
                 thisInstance.add(comp);
 
                 if (comp.preload) {
                     thisInstance.load(comp).then(() => {
                         if (thisInstance.#allComponentsLoaded) {
-                            doneLoading();
+                            //doneLoading();
                         }
                     });
-
                 }
             });
+            doneLoading();
         });
     }
 
@@ -112,7 +113,7 @@ export class ComponentManager {
         }
 
         if (!component.hasOwnProperty("app")) {
-            this.load(component).then((newComp) => { newComp.main(); });
+            this.load(component).then((newComp) => { newComp.main(args); });
             return true;
         }
 
@@ -121,5 +122,9 @@ export class ComponentManager {
         // ### reference the current component for later use (re-run) ###
         this.#currentComponent = component;
         return true;
+    }
+
+    get list() {
+        return this.#components;
     }
 }
