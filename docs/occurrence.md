@@ -1,5 +1,5 @@
-# Occcurence
-The occurence is backbone of several other object holding your data with nice features. Instead of using a regular object it supports you with changes by offering a cache, infos about if it has been altered and the option of setting it back to how it was before!
+# Occurrence
+The occurrence is backbone of several other object holding your data with nice features. Instead of using a regular object it supports you with changes by offering a cache, infos about if it has been altered and the option of setting it back to how it was before!
 This class is used for `localDatabase`.
 
 ## usage
