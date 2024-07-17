@@ -1,6 +1,15 @@
 # spaCore
 A tiny SPA JavaScript toolkit
 
+## Basic directory structure
+```
+/js
+  ├─spa
+     ├─ classes (all js classes)
+     ├─ components (mainly for your components)
+     ├─ languages (for languagePacks)
+```
+
 ## Documentation
 - [localization and languages](docs/languages.md)
 ### Classes
@@ -17,9 +26,6 @@ A tiny SPA JavaScript toolkit
 - #### Components
     - [SplitPane](docs/splitpane.md)
     - [TabManager](docs/tabManager.md)
-
-
-
 ### Functions
 - [Occurrence](docs/occurrence.md)
 - [LocalDatabase](docs/localdatabase.md)
