@@ -18,13 +18,13 @@ export class PipeLocalized extends Pipe {
         // ### component node? ###
         if (token.includes(".")) {
             const tokenParts = token.split(".");
-            let componenNode = (this.#dictionary.language().hasOwnProperty(tokenParts[0])) ? this.#dictionary.language()[tokenParts[0]] : null,
+            let componentNode = (this.#dictionary.language().hasOwnProperty(tokenParts[0])) ? this.#dictionary.language()[tokenParts[0]] : null,
                 index = tokenParts[1];
 
             // ### look for the componentNode ###
-            if (componenNode) {
-                if (componenNode.hasOwnProperty(index)) {
-                    return componenNode[index];
+            if (componentNode) {
+                if (componentNode.hasOwnProperty(index)) {
+                    return componentNode[index];
                 }
 
                 console.info(`pipe-localized: can't find translation ${tokenParts[0]} => ${index}`);
