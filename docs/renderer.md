@@ -11,6 +11,14 @@ And to make it more fun: it can detect pipes and be extended!
 // ### prepare a new text renderer, register pipes ###
 app.renderer = new Renderer();
 
+// ### prepare a new text renderer with localiuation ###
+app.renderer = new Renderer(
+    {
+        app: app,
+        useDictionary: true
+    }   
+);
+
 // ### let's register a pipe object to localize phrases ###
 app.renderer.addPipe(
     new PipeLocalized(app.dictionary)
@@ -31,3 +39,6 @@ const translatedHtml = app.renderer.translate(html,myValues);
 ## Pipe objects
 Pipe objects (or Pipes) extend the boilerplates as the have the option to transform the output of the value to anything that can be programmed!
 In order to take advantage of pipes you'll need to register them into the `Renderer`.
+
+## useDictionary setting
+By providing the app and the setting set to `true` the renderer will use the dictionary data of the current language to translate the boilerplates into phrases. More on this is described in [Languages](languages.md).

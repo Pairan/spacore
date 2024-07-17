@@ -1,7 +1,17 @@
 export class Renderer {
     #pipes = {};
+    #app = null;
+    #includeDictonary = false;
 
     constructor(settings) {
+        if (settings.hasOwnProperty("app")) {
+            this.#app = settings.app;
+
+            // ### dictionary feature only if app is provided ###
+            if (settings.hasOwnProperty("useDictionary")) {
+                this.#includeDictonary = (settings.useDictionary === true)
+            }
+        }
     }
     addPipe(newPipe) {
         this.#pipes[newPipe.token.toLowerCase()] = newPipe;
@@ -35,19 +45,20 @@ export class Renderer {
             if (bracket.indexOf("|")) {
                 field = String(bracket.split("|")[0]).trim();
                 pipe = bracket.split("|")[1];
-                if (pipe)
+                if (pipe) {
                     pipe = pipe.toLowerCase();
-                /*
-                    console.log("found field:", field, " found pipe:", pipe);
-            */
+                }
             } else {
                 field = bracket.trim();
-                //console.log("found field:", field,);
             }
 
             if (boilerplates.hasOwnProperty(field)) {
 
                 value = boilerplates[field];
+            } else {
+                if (this.#includeDictonary) {
+                    value = this.#app.dictionary.getToken(field);
+                }
             }
 
             if (pipe) {
