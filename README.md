@@ -1,4 +1,4 @@
-# spacore
+# spaCore
 A tiny SPA JavaScript toolkit
 
 ## Documentation
@@ -9,14 +9,14 @@ A tiny SPA JavaScript toolkit
     - [Component](docs/component.md)
     - [ComponentManager](docs/componentManager.md)
     - [Dictionary](docs/dictionary.md)
-    - [FormGroup](docs/formgroup.md)
-    - [Pipe](docs/pipes.md)
-    - [Renderer](docs/renderer.md)
-    - [TabManager](docs/tabManager.md)
     - [ValidateForm](docs/validateform.md)
+        - [FormGroup](docs/formgroup.md)
+    - [Renderer](docs/renderer.md)
+        - [Pipe](docs/pipes.md)
     - [WindowManager](docs/windowManager.md)
 - #### Components
     - [SplitPane](docs/splitpane.md)
+    - [TabManager](docs/tabManager.md)
 
 
 
