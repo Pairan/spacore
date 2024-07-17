@@ -18,7 +18,7 @@ This class is used for `localDatabase`.
  // ### changing a member ###
  occ.set("group","admin");
 
- // ### has the occurence been altered? ###
+ // ### has the occurence been altered? ###     
  console.log("modified:", occ.isModified);
 
  // ### remove a member for the occ ###
