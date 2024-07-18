@@ -1,10 +1,10 @@
-import { Observable } from "../classes/class-observable.js";
+import { Trigger } from "../classes/class-trigger.js";
 import { fromJWT } from "../tools/from-jwt.js";
 
 export class UserContext {
     #jwt;
     #language = navigator.language;
-    #observer = null;
+    #trigger = null;
 
     constructor(settings) {
         let oldJwt = localStorage.getItem("jwt");
@@ -31,9 +31,9 @@ export class UserContext {
     set language(code) {
         this.#language = code;
 
-        if (this.#observer) {
+        if (this.#trigger) {
 
-            this.#observer.notify(this.#language, "language");
+            this.#trigger.notify(this.#language, "language");
         }
     }
 
@@ -50,9 +50,9 @@ export class UserContext {
     * @param {function} pCallBack
     */
     subscribe = function (pCallBack, pAction) {
-        // ### if we don't have an instance of Observable(), then get one ###
-        if (!this.#observer) {
-            this.#observer = new Observable();
+        // ### if we don't have an instance of Trigger(), then get one ###
+        if (!this.#trigger) {
+            this.#trigger = new Trigger();
         }
 
         // ### let's do them lower case ###
@@ -64,6 +64,6 @@ export class UserContext {
             pAction = null;
         }
 
-        return (this.#observer.subscribe(pCallBack, pAction));
+        return (this.#trigger.subscribe(pCallBack, pAction));
     };
 }

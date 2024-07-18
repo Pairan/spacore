@@ -1,14 +1,14 @@
-import { Observable } from "./class-observable.js";
+import { Trigger } from "./class-trigger.js";
 
 class Window {
-    // ### private: observer ###
-    #observer;
+    // ### triggers ###
+    #trigger;
 
 
     constructor(windowName) {
         this.element = document.createElement("window-" + windowName.toLowerCase());
         this.isVisible = false;
-        this.#observer = null;
+        this.#trigger = null;
     }
     /**
      * sets the innerHTML of the element
@@ -46,12 +46,12 @@ class Window {
         // ### change state ###
         this.isVisible = pVisible;
 
-        // ### notify observers ###
-        if (this.#observer) {
+        // ### notify subscribers ###
+        if (this.#trigger) {
             if (pVisible === false) {
-                this.#observer.notify("", "hide");
+                this.#trigger.notify("", "hide");
             } else {
-                this.#observer.notify("", "show");
+                this.#trigger.notify("", "show");
             }
         }
     }
@@ -68,11 +68,11 @@ class Window {
      * @memberof Window
      */
     subscribe(pCallback, pAction, pOnlyOnce) {
-        if (!this.#observer) {
-            this.#observer = new Observable();
+        if (!this.#trigger) {
+            this.#trigger = new Trigger();
         }
 
-        return (this.#observer.subscribe(pCallback, pAction, pOnlyOnce));
+        return (this.#trigger.subscribe(pCallback, pAction, pOnlyOnce));
     }
 }
 

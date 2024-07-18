@@ -6,10 +6,10 @@ class Subscriber {
     }
 }
 
-export class Observable {
-    #observers = [];
+export class Trigger {
+    #subscribers = [];
     constructor() {
-        this.#observers = [];
+        this.#subscribers = [];
     }
     /**
      * notify all subscribers
@@ -17,76 +17,73 @@ export class Observable {
      *
      * @param {Object|String} pPayload
      * @param {String} pAction
-     * @memberof Observable
+     * @memberof Trigger
+     *
      */
     notify(pPayload, pAction) {
         let i,
-            observers = this.#observers;
+            subscribers = this.#subscribers;
 
-        for (i = 0; i < observers.length; i++) {
+        for (i = 0; i < subscribers.length; i++) {
 
-            if (observers[i].callback) {
+            if (subscribers[i].callback) {
                 // ### did we get a filter? ###
                 if (pAction) {
 
                     // ### we will only call back to the matching subscribers ###
-                    if (observers[i].action == pAction) {
-                        observers[i].callback(pPayload);
+                    if (subscribers[i].action == pAction) {
+                        subscribers[i].callback(pPayload);
 
-                        if (observers[i]) {
+                        if (subscribers[i]) {
 
 
-                            if (observers[i].onlyOnce) {
-                                console.log("unsubscribe action:", observers[i]);
-                                observers[i].unsubscribe();
+                            if (subscribers[i].onlyOnce) {
+                                console.log("unsubscribe action:", subscribers[i]);
+                                subscribers[i].unsubscribe();
                             }
                         }
                     }
                 } else {
                     // ### no filter => all subscribers without action are called back ###
-                    if (observers[i].action == null) {
-                        observers[i].callback(pPayload);
+                    if (subscribers[i].action == null) {
+                        subscribers[i].callback(pPayload);
 
-                        if (observers[i].onlyOnce) {
-                            console.log("unsubscribe:", observers[i]);
-                            observers[i].unsubscribe();
+                        if (subscribers[i].onlyOnce) {
+                            //console.log("unsubscribe:", subscribers[i]);
+                            subscribers[i].unsubscribe();
                         }
                     }
-
                 }
             }
-
-
         }
     }
 
     /**
-     * subscribe to the observer with optional action filter
+     * subscribe to the trigger with optional action filter
      * - tries to catch dupe subscriptions!
      * 
      * @param {Funktion} pCallBack
      * @param {String} pAction
      * @param {Boolean} pOnlyOnce
      * @returns Function used to unsubscribe
-     * @memberof Observable
+     * @memberof Trigger
      */
     subscribe(pCallBack, pAction, pOnlyOnce) {
         let newSubscriber = new Subscriber(pCallBack, pAction),
             i,
-            observers = this.#observers;
+            subscribers = this.#subscribers;
         /**
-         * remove a subscriber from the observer array
+         * remove a subscriber from the trigger array
          *
          * @param {Funktion} pCallBack
          * @param {String} pAction
-         * @memberof Observable
+         * @memberof Trigger
          */
         function removeSubscription(pCallBack, pAction) {
-            var i;
-            for (i = 0; i < observers.length; i++) {
+            for (i = 0; i < subscribers.length; i++) {
 
-                if ((observers[i].callback == pCallBack) && (observers[i].action == pAction)) {
-                    observers.splice(i, 1);
+                if ((subscribers[i].callback == pCallBack) && (subscribers[i].action == pAction)) {
+                    subscribers.splice(i, 1);
                     break;
                 }
             }
@@ -97,14 +94,14 @@ export class Observable {
         }
 
         // ### check if we've already got this subscription! ###
-        for (i = 0; i < observers.length; i++) {
+        for (i = 0; i < subscribers.length; i++) {
 
             if (
-                (observers[i].callback.toString() == pCallBack.toString()) &&
-                (observers[i].action == pAction) &&
-                (observers[i].onlyOnce == pOnlyOnce)
+                (subscribers[i].callback.toString() == pCallBack.toString()) &&
+                (subscribers[i].action == pAction) &&
+                (subscribers[i].onlyOnce == pOnlyOnce)
             ) {
-                return (observers[i].unsubscribe);
+                return (subscribers[i].unsubscribe);
             }
         }
 
@@ -114,12 +111,9 @@ export class Observable {
         };
 
         // ### register the subscription ###
-        observers.push(newSubscriber);
+        subscribers.push(newSubscriber);
 
         // ### return a remove function ###
         return (newSubscriber.unsubscribe);
     }
-
-
 }
-

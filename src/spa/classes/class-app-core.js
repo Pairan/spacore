@@ -1,4 +1,4 @@
-import { Observable } from "./class-observable.js";
+import { Trigger } from "./class-trigger.js";
 
 export class AppCoreSettings {
     constructor(settings) {
@@ -19,10 +19,9 @@ export class AppCoreSettings {
 }
 
 export class AppCore {
-    #observer = null;
+    #trigger = null;
     #titleTag;
     #currentTheme = "light";
-
 
     constructor(settings) {
 
@@ -71,7 +70,8 @@ export class AppCore {
     }
     get title() {
         if (!this.#titleTag)
-            return;
+            return "";
+
         return this.#titleTag.innerHTML;
     }
     set title(text) {
@@ -86,9 +86,9 @@ export class AppCore {
     }
 
     subscribe(callBack, action) {
-        // ### if we don't have an instance of Observable(), then get one ###
-        if (!this.#observer) {
-            this.#observer = new Observable();
+        // ### if we don't have an instance of Trigger(), then get one ###
+        if (!this.#trigger) {
+            this.#trigger = new Trigger();
         }
 
         // ### let's do them lower case ###
@@ -97,11 +97,11 @@ export class AppCore {
 
         action = action.toLowerCase();
 
-        return (this.#observer.subscribe(callBack, action));
+        return (this.#triggger.subscribe(callBack, action));
     }
 
     notify(payload = null, action) {
-        if (!this.#observer)
+        if (!this.#trigger)
             return;
 
         if (!action)
@@ -109,7 +109,7 @@ export class AppCore {
 
         action = action.toLowerCase();
 
-        this.#observer.notify(payload, action)
+        this.#trigger.notify(payload, action)
     }
     name = "SPA app";
     view = null;

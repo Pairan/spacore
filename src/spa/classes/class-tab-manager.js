@@ -1,6 +1,6 @@
 /* ### tab manager for SpaCore !VERSION! / BUILD !BUILD! ### */
 
-import { Observable } from "./class-observable.js";
+import { Trigger } from "./class-trigger.js";
 
 /**
  * describes the tab and it's content
@@ -109,7 +109,7 @@ class Tab {
  */
 export class TabManager {
     #currentTab = null;
-    #observers = null;
+    #trigger = null;
     #lastTabName = null;
 
     #eventhandler = (event) => {
@@ -147,7 +147,7 @@ export class TabManager {
 
         this.tabObjects = {};
         this.#currentTab = null;
-        this.#observers = null;
+        this.#trigger = null;
 
         this.tabContainer = tabNode;
         this.view = viewContainer;
@@ -179,9 +179,9 @@ export class TabManager {
         this.#currentTab.pusher.classList.add("current");
         this.#currentTab.output.hidden = false;
 
-        // ### notify observers ###
-        if (this.#observers) {
-            this.#observers.notify(tabName);
+        // ### notify subscriber ###
+        if (this.#trigger) {
+            this.#trigger.notify(tabName);
         }
     }
     /**
@@ -273,13 +273,13 @@ export class TabManager {
         return true;
     };
     subscribe(callBack, action, onlyOnce = false) {
-        if (!this.#observers) {
-            this.#observers = new Observable();
+        if (!this.#trigger) {
+            this.#trigger = new Trigger();
         }
         // ### action: "commit", "set","refresh" ...
         if (!action)
             action = "";
 
-        return (this.#observers.subscribe(callBack, action, onlyOnce));
+        return (this.#trigger.subscribe(callBack, action, onlyOnce));
     }
 }
