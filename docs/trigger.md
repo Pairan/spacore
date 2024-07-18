@@ -36,12 +36,12 @@ class AddingData {
 
     // ### enable others to subscribe to an action with their callback function ###
     subscribe(callBack, action="",onlyOnce = false) {
-        // ### if we don't have an instance of Trigger()), then get one ###
+        // ### if we don't have an instance of Trigger(), then get one ###
         if (!this.#trigger) {
             this.#trigger = new Trigger();
         }
 
-        // ### subscribe and return an unsubscibe function as return ###
+        // ### subscribe and return an unsubscribe function as return ###
         return (this.#triggger.subscribe(callBack, action, onlyOnce));
     }
 
@@ -99,7 +99,7 @@ Further you can tell the subscription to only run once! If specified as true, th
 
 When we `subscribe()` a function to unsubscribe is returned so we could stop the subscription in case we need to!
 
-## nofity()
+## notify()
 `notify()` starts the call backs to the subscribers. Place it anywhere within the code and call it, when the event or actions happens. 
 #### params: 
 * `any`: payload(*optional*) - the data to provide to the callback functions
