@@ -29,6 +29,7 @@ export class Trigger {
             if (subscribers[i].callback) {
                 // ### did we get a filter? ###
                 if (pAction) {
+                    pAction = pAction.toLocaleLowerCase();
 
                     // ### we will only call back to the matching subscribers ###
                     if (subscribers[i].action == pAction) {
@@ -49,7 +50,6 @@ export class Trigger {
                         subscribers[i].callback(pPayload);
 
                         if (subscribers[i].onlyOnce) {
-                            //console.log("unsubscribe:", subscribers[i]);
                             subscribers[i].unsubscribe();
                         }
                     }
@@ -88,6 +88,9 @@ export class Trigger {
                 }
             }
         }
+        if (pAction) {
+            pAction = pAction.toLocaleLowerCase();
+        }
 
         if (typeof (pOnlyOnce) !== "boolean") {
             pOnlyOnce = false;
@@ -105,8 +108,8 @@ export class Trigger {
             }
         }
 
-        newSubscriber.unsubscribe = function () {
-            console.log("removing prior subscribtion:", pCallBack);
+        newSubscriber.unsubscribe = () => {
+            console.log("removing prior subscription:", pCallBack);
             removeSubscription(pCallBack, pAction);
         };
 
