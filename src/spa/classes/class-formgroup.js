@@ -9,6 +9,7 @@ export class FormGroup {
     #translateIn = null;
     #translateOut = null;
     #validate = null;
+    #whenDone = null;
     #debug = false;
 
     /**
@@ -21,11 +22,6 @@ export class FormGroup {
 
     #eventHandler(event) {
         let target = event.target;
-
-        /* ### obsolete as "input" only fires on editable controls!
-        if (!validTags.includes(target.tagName))
-            return;
-        */
 
         if (this.#debug)
             console.log(target.name + ": " + target.value);
@@ -45,10 +41,19 @@ export class FormGroup {
         }
 
         // ### apply changes to occurrence ###
-        this.#occ.set(target.name, target.value);
+        if ((target.type === "checkbox") && (!target.checked)) {
+            this.#occ.set(target.name, null);
+        } else {
+            this.#occ.set(target.name, target.value);
+        }
 
         // ### refresh controls ###
         this.refreshControls();
+
+        // ### callback after we're done ###
+        if (this.#whenDone instanceof Function) {
+            this.#whenDone();
+        }
     }
 
     constructor(settings) {
@@ -75,9 +80,14 @@ export class FormGroup {
                 this.#validate = settings.validate;
             }
 
+            if (settings.whenDone instanceof Function) {
+                this.#whenDone = settings.whenDone;
+            }
+
             if (settings.debug instanceof Boolean) {
                 this.#debug = (settings.debug === true);
             }
+
         }
 
         // ### update controls to occurrence value ###
@@ -104,7 +114,7 @@ export class FormGroup {
 
         controls.forEach(element => {
             if (this.#occ.data.hasOwnProperty(element.name)) {
-                if (element.type !== "checkbox")
+                if ((element.type !== "checkbox") && (element.type !== "radio"))
                     element.value = this.#occ.data[element.name];
             }
         });
