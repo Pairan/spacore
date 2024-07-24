@@ -1,0 +1,24 @@
+:root {
+    --spa-card-border: 1px solid rgba(0, 0, 0, 0.3);
+    --spa-card-border-radius: 5px;
+    --spa-card-bg-color: #fff;
+    --spa-card-padding: 0.5rem 1rem;
+
+}
+
+/* ### Card ### */
+.spa-card {
+    background-color: var(--spa-card-bg-color);
+    border: var(--spa-card-border);
+    border-radius: var(--spa-card-border-radius);
+    padding: var(--spa-card-padding);
+
+    &.with-margin {
+        margin: 0.5rem;
+    }
+
+    h5 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+}

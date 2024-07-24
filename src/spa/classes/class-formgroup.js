@@ -126,13 +126,11 @@ export class FormGroup {
      * @returns Boolean|Number
      */
     controlsValid(inNumbers) {
-        var control,
-            invalidControls = 0,
+        let invalidControls = 0,
             isValid = true,
             controls = this.#parentNode.querySelectorAll("input, select, textarea");
 
-        for (let i = 0; i < controls.length; i++) {
-            control = controls[i];
+        for (const control of controls) {
 
             if (!control.checkValidity()) {
                 isValid = false;

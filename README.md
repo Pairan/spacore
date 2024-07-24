@@ -18,8 +18,7 @@ A tiny SPA JavaScript toolkit
     - [Component](docs/component.md) - component defaults
     - [ComponentManager](docs/componentManager.md) - load and manage components lazy
     - [Dictionary](docs/dictionary.md) - manage multiple languages and boilerplates/placeholders
-    - [ValidateForm](docs/validateform.md) - making form handling easy
-        - [FormGroup](docs/formgroup.md)
+    - [FormGroup](docs/formGroup.md) - making form handling easy
     - [Renderer](docs/renderer.md) - render placeholders in html templates
         - [Pipe](docs/pipes.md) - enhance placeholders
     - [WindowManager](docs/windowManager.md) - manage multiple outputs/views

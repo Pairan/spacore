@@ -1,0 +1,115 @@
+:root {
+    --spa-field-padding: 0.5rem 1rem;
+    --spa-field-background: #fff;
+    --spa-field-border-color: #aaa;
+    --spa-field-border: 1px solid var(--spa-field-border-color);
+    --spa-field-border-radius: 5px;
+    --spa-field-height: 2rem;
+    --spa-field-invalid-border-color: red;
+    --spa-field-valid-border-color: rgb(16, 188, 0);
+}
+
+textarea.spa-field {
+    outline: 0;
+}
+
+.spa-field {
+    line-height: var(--spa-field-height);
+    display: inline-block;
+    overflow: hidden;
+    border: var(--spa-field-border);
+    border-radius: var(--spa-field-border-radius);
+    position: relative;
+    padding: 0 1rem;
+    margin: 0;
+    white-space: nowrap;
+    background-color: var(--spa-field-background);
+
+    label {
+        position: absolute;
+        transition: transform 250ms;
+        left: .5rem;
+    }
+
+    input {
+        border: 0;
+        outline: 0;
+        padding: 0;
+        font-size: 1rem;
+        transition: all 250ms;
+        background-color: transparent;
+
+        width: calc(100% - 0.5rem);
+
+        &::placeholder {
+            color: transparent;
+        }
+
+        &:not(:placeholder-shown)+label {
+            transform: translateY(-25%) scale(0.70);
+        }
+    }
+
+    &:focus-within {
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+
+        input+label,
+        input:not(:placeholder-shown)+label {
+            transform: translateY(-25%) scale(0.7);
+        }
+    }
+
+    &:has(.icon) {
+        input {
+            width: calc(100% - 0.5rem - var(--spa-field-height) + 2px);
+        }
+
+        padding-right: 0;
+    }
+
+    .icon {
+        display: inline-block;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: var(--spa-field-height);
+        text-align: center;
+        background-color: color-mix(in srgb, var(--spa-field-background) 90%, #000);
+        cursor: pointer;
+        border-top-right-radius: var(--spa-field-border-radius);
+        border-bottom-right-radius: var(--spa-field-border-radius);
+        transform: translate(2px);
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--spa-field-background) 80%, #000);
+        }
+    }
+
+    /* ### invalid marking ### */
+    &:has(input:invalid) {
+        border-bottom-color: var(--spa-field-invalid-border-color);
+        background-color: color-mix(in srgb, var(--spa-field-background) 90%, var(--spa-field-invalid-border-color));
+
+    }
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 25% auto;
+
+    >label {
+        line-height: 2rem;
+        padding-top: 2px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    &:has(input[required]) {
+        label::after {
+            content: "*";
+
+        }
+    }
+}

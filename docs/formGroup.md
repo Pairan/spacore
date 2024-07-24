@@ -7,8 +7,6 @@ The `FormGroup` has optional callbacks for modifying incoming and outgoing value
 
 The FormGroup observes the `input` event of the controls.
 
-As for now the easiest way to use `FormGroup`is the [ValidatedForm](validateForm.md) class!
-
 
 ### usage
 ```javascript
