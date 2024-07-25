@@ -1,0 +1,10 @@
+.spa-split-pane {
+    .splitter {
+        cursor: w-resize;
+        border-right: 1px solid var(--spa-border-color);
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+}

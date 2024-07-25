@@ -90,8 +90,6 @@ export class SplitPane {
         this.#splitPaneWidget.style.display = "grid";
 
         this.#splitPane.classList.add("splitter");
-        this.#splitPane.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-        this.#splitPane.style.cursor = "w-resize";
 
         // ### create the basic setup ###
         this.#splitPaneWidget.appendChild(this.#leftPane);

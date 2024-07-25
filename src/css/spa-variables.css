@@ -1,0 +1,8 @@
+:root {
+
+    /* ### SPA BASIC COLORS and SHAPES ### */
+    --spa-border-color: #aaa;
+    --spa-border-size: 1px solid;
+    --spa-padding: 0.5rem 1rem;
+
+}
