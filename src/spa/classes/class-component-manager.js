@@ -84,6 +84,13 @@ export class ComponentManager {
                             app: self.#app
                         }
                     );
+
+                    // ### check component name ###
+                    if (newComponentInstance.name != component.name) {
+                        console.info(`componentManager: name of component differs from ${component.name} to ${newComponentInstance.name}! setting it to ${component.name}.`);
+                        newComponentInstance.name = component.name;
+                    }
+
                     // ### hand component to app.components ###
                     self.add(newComponentInstance);
 
