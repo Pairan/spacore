@@ -1,4 +1,8 @@
 /* ### tiny grid used for easy layout ### */
+:root {
+  --spa-grid-gap: 1rem;
+}
+
 .spa-grid-2,
 .spa-grid-3,
 .spa-grid-4,
@@ -7,7 +11,7 @@
 .spa-grid-7,
 .spa-grid-8 {
   display: grid;
-  gap: 1rem;
+  gap: var(--spa-grid-gap, 1rem);
 }
 
 .spa-grid-2 {

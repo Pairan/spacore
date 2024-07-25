@@ -1,6 +1,9 @@
 # Grid (spa-grid)
 `.spa-grid-x` is made to solve the probably most used layout: equal size columns within a row.
-
+## Variables
+```css
+--spa-grid-gap: 1rem;
+```
 ### Usage
 You can define everything from 2 columns (`spa-grid-2`) to 8 columns (`spa-grid-8`).
 ```html
