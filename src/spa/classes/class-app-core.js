@@ -1,4 +1,5 @@
 import { Trigger } from "./class-trigger.js";
+import { ApiCall } from "./class-api-call.js";
 
 export class AppCoreSettings {
     constructor(settings) {
@@ -22,6 +23,9 @@ export class AppCore {
     #trigger = null;
     #titleTag;
     #currentTheme = "light";
+
+    // ### add the http client ApiCall ###
+    apiCall = new ApiCall(this);
 
     constructor(settings) {
 

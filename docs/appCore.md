@@ -3,6 +3,8 @@ This is what we need to start a project with: the app core! It holds all threads
 
 The `AppCore` further offers a notification system, that let's the developer register custom events and subscribe to these across the app. This could as an example be a successful login or a logout. Loaded components could react on that as they get notified after they have subscribed to it. 
 
+In the latest version the `ApiCall` http client was added to enable easy access to backend APIs. The documentation on that is found in [ApiCall()](./ApiCall.md).
+
 A simple `<script type="module" src="">` tag within the main HTML document gets the `AppCore` loaded. 
 
 Further it supports switching between light and dark theme and makes changes persistent by saving the choice in the `localStorage` (key `theme`).
@@ -110,9 +112,8 @@ h5 {
 ```
 This should pave the way for themes of any kind.
 
-
 ### Subcribe to a token and get notified!
-As mentioned in the introduction we can add subscribeable tokens and get notified as these are triggered. Technically we use the `Observeable` object (which is *NOT related to RXJS*).
+As mentioned in the introduction we can add subscribeable tokens and get notified as these are triggered. Technically we use the `Trigger` object.
 
 To demonstrate this we will add tokens for "login" and "logout" to our app:
 ```javascript
@@ -137,7 +138,7 @@ To subscribe to a token the `app.subscribe()` method is used. You will have to d
 
 To notify all subscribers on a token, `app.notify()` is used.
 
-More details on the `Observeable` class will follow an extra documentation!
+More details on the `Trigger` class will follow an extra documentation!
 
 
 And that's all for the `AppCore`
