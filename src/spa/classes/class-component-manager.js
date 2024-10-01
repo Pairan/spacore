@@ -74,9 +74,8 @@ export class ComponentManager {
 
             import(component.src).then(
                 function (loadedComponent) {
-                    //if (componentIndex > -1) {
+                    const componentIndex = self.#components.findIndex(c => (c.src == component.src));
                     self.#components.splice(componentIndex, 1);
-                    //}
 
                     // ### invoke the new component ###
                     const newComponentInstance = new loadedComponent.default(
