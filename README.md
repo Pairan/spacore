@@ -15,6 +15,7 @@ A tiny SPA JavaScript toolkit
 ### Classes
 - #### Features
     - [AppCore](docs/appCore.md) - the core to hold all your awesome app functions 
+    - [ApiCall](docs/apiCall.md) - http client
     - [Component](docs/component.md) - component defaults
     - [ComponentManager](docs/componentManager.md) - load and manage components lazy
     - [Dictionary](docs/dictionary.md) - manage multiple languages and boilerplates/placeholders
@@ -25,7 +26,8 @@ A tiny SPA JavaScript toolkit
     - [Trigger](docs/trigger.md) - subscribe to custom events
 - #### Components
     - [SplitPane](docs/splitpane.md) - two outputs, switchable , size alterable
-    - [TabManager](docs/tabManager.md) - a tab widget
-### Functions
+    - [TabManager](docs/tabManager.md) - tab widget
+    - [Chip](docs/widgets/chip.md) - chip widget
+  ### Functions
 - [Occurrence](docs/occurrence.md)
 - [LocalDatabase](docs/localdatabase.md)
