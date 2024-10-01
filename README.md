@@ -28,6 +28,6 @@ A tiny SPA JavaScript toolkit
     - [SplitPane](docs/splitpane.md) - two outputs, switchable , size alterable
     - [TabManager](docs/tabManager.md) - tab widget
     - [Chip](docs/widgets/chip.md) - chip widget
-  ### Functions
-- [Occurrence](docs/occurrence.md)
-- [LocalDatabase](docs/localdatabase.md)
+- #### Functions
+    - [Occurrence](docs/occurrence.md)
+    - [LocalDatabase](docs/localdatabase.md)

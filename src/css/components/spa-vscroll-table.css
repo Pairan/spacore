@@ -1,38 +1,205 @@
-spa-vscroll-table,
-.container {
+spa-vscroll-table {
     height: 90vh;
     display: block;
-}
 
-.viewport {
-    height: calc(100% - 64px - 1rem);
-    overflow: auto;
-}
+    table {
+        width: 100%;
+        border: 1px solid #a2a2a3;
+        background-color: #fff;
+        table-layout: fixed;
+        border-collapse: collapse;
 
-.viewport-content {
-    display: block;
-    /*
-    padding: 0.5rem;
-    width: calc(100vw - 50px);
-    */
-}
+        &:has(tbody) {
+            overflow: hidden;
+        }
 
-.viewport-content-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    contain: content;
-}
+        tr {
+            height: 2rem;
+        }
 
-.viewport-scroll-spacer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    transform-origin: 0 0;
-}
+        thead {
+            background: linear-gradient(to bottom, #f0f0f0 0%, #dddddd 50%, #cbcbcb 51%, #b7b7b7 100%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 
-.spa-table-vscroll thead {
-    position: sticky;
-    z-index: 1;
+            tr {
+                font-size: 12px;
+                color: rgba(0, 0, 0, 0.6);
+                white-space: nowrap;
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(242, 242, 242, 1) 100%);
+
+                th {
+                    position: relative;
+                    border-right: 1px solid gray;
+                    padding: 0.5rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+
+                    &:last-child {
+                        border-right: unset;
+                    }
+
+                    &[draggable] {
+                        cursor: grab;
+                    }
+
+                    &.drag-over {
+                        background-color: rgba(255, 204, 51, 0.3);
+                    }
+
+                    &.spa-table-resize {
+                        cursor: col-resize;
+                        display: block;
+                        position: absolute;
+                        right: -0.25rem;
+                        z-index: 1;
+                        top: 0;
+                        height: 100%;
+
+                        width: 5px;
+                        background-color: rgba(92, 92, 91, 0.1);
+                        background-repeat: repeat-x;
+                    }
+
+                    .spa-table-sort {
+                        cursor: pointer;
+                        display: block;
+                        position: absolute;
+                        right: 5px;
+                        z-index: 1;
+                        top: 0;
+                        height: 100%;
+                        width: 1.5em;
+                        background-repeat: repeat-x;
+                        font-family: var(--fa-style-family, "Font Awesome 6 Free");
+                        font-weight: 900;
+
+                        &:before {
+                            content: "\f0dc";
+                            position: absolute;
+                            top: 0;
+                            left: 28%;
+                            transform: translateY(50%);
+                        }
+
+                        &.asc:before {
+                            content: "\f0de";
+                        }
+
+                        &.desc:before {
+                            /* \/ DOWNWARDS*/
+                            content: "\f0dd";
+                        }
+                    }
+
+                    span:last-of-type {
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                &:nth-child(2n+1) {
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+
+                &:hover {
+                    /*background-color: rgba(0, 0, 0, 0.10) !important;*/
+                    background-color: rgba(255, 204, 51, 0.4);
+
+                    .context-icon {
+                        opacity: .5;
+                    }
+                }
+
+                &[data-id] {
+                    cursor: pointer;
+                }
+
+                td {
+                    position: relative;
+                    border: 1px solid rgba(0, 0, 0, 0.09);
+                    white-space: nowrap;
+                    padding: 0.5rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+
+                    &.spa-row-control {
+                        text-align: center;
+                    }
+
+                    .context-icon {
+                        color: var(--spa-button-background-color, #0d6efd);
+                        opacity: 0;
+                        transition: opacity 200ms ease-in-out;
+                        position: absolute;
+                        font-size: 0.7rem;
+                        right: 0.1rem;
+                        top: 0;
+                        cursor: pointer;
+                    }
+
+                    a.as-link {
+                        text-decoration: underline;
+                        color: #0066cc;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .viewport {
+            height: calc(100% - 64px - 1rem);
+            overflow: auto;
+        }
+
+        .viewport-content {
+            display: block;
+            /*
+        padding: 0.5rem;
+        width: calc(100vw - 50px);
+        */
+        }
+
+        .viewport-content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            contain: content;
+        }
+    }
+
+
+    .container {
+        height: 90vh;
+        display: block;
+    }
+
+    .viewport {
+        height: calc(100% - 64px - 1rem);
+        overflow: auto;
+    }
+
+    .viewport-content {
+        display: block;
+    }
+
+    .viewport-content-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        contain: content;
+    }
+
+    .viewport-scroll-spacer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        transform-origin: 0 0;
+    }
+
 }
