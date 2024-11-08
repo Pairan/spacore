@@ -21,6 +21,17 @@ export class Renderer {
             value,
             brackets = html.split("{{");
 
+        // ### check the boilerplates parameter against a string ###
+        if (typeof (boilerplates) === "string") {
+            if (this.#includeDictonary) {
+                if (this.#app.dictionary.language().hasOwnProperty(boilerplates)) {
+                    boilerplates = this.#app.dictionary.getToken(boilerplates);
+                } else {
+                    boilerplates = {};
+                }
+            }
+        }
+
         // ### skip the first! ###
         for (let i = 1; i < brackets.length; i++) {
             let bracket = brackets[i],
