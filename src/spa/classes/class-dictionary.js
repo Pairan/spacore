@@ -85,8 +85,6 @@ export class Dictionary {
             if (componenNode.hasOwnProperty(index)) {
                 return componenNode[index];
             }
-
-            console.info(`dictionary: can't find translation ${tokenParts[0]} => ${index}`);
         }
 
         return dict[token] || token;

@@ -11,15 +11,26 @@ To make things more convenient its possible to make sub nodes (e.g. a componentn
 Here is a quick example of a german pack: 
 ```javaScript
 export let languagePack = {
-    login: "Anmeldung",
-    userId: "Kennung",
-    password: "Passwort",
-    submit: "Senden",
-    hello: "Hallo",
-    home: {
-        title: "Willkommen bei spaCore 2024"
+    "login": "Anmeldung",
+    "userId": "Kennung",
+    "password": "Passwort",
+    "submit": "Senden",
+    "hello": "Hallo",
+    "home": {
+        "title": "Willkommen bei spaCore 2024"
+    },
+    "dialog": {
+        "small": {
+            "title": "kleiner Titel",
+            "content": "Der Inhalt des kleinen Dialogs!"
+        },
+        "full": {
+            "title": "Fullscreen-Dialog",
+            "content": "Inhalt für den Fullscreen-Dialog"
+        }
     }
 }
 ```
+Since the latest update its possible to add subtokens that may be objects itself. This will make the language files even better to manage.
 ### Filenames
 The `languagePack` file needs to be placed within the `languages` directory and is stored as `./languages/<code>.js` (e.g. "languages/de.js").
