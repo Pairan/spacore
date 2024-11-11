@@ -63,22 +63,30 @@ export class Dictionary {
      * @returns String
      */
     getToken(token, language = this.#currentLanguage) {
-        const dict = this.#languages[language];
+        let dict = this.#languages[language];
+        let tokenParts = token.split(".");
 
         // ### component node? ###
         if (token.includes(".")) {
-            const tokenParts = token.split(".");
-            let componenNode = (dict.hasOwnProperty(tokenParts[0])) ? dict[tokenParts[0]] : null,
-                index = tokenParts[1];
-
-            // ### look for the componentNode ###
-            if (componenNode) {
-                if (componenNode.hasOwnProperty(index)) {
-                    return componenNode[index];
+            while (tokenParts.length > 2) {
+                let subtoken = tokenParts.shift();
+                if (!dict.hasOwnProperty(subtoken)) {
+                    break;
                 }
-
-                console.info(`dictionary: can't find translation ${tokenParts[0]} => ${index}`);
+                dict = { ...dict[subtoken] };
             }
+        }
+
+        let componenNode = (dict.hasOwnProperty(tokenParts[0])) ? dict[tokenParts[0]] : null,
+            index = tokenParts[1];
+
+        // ### look for the componentNode ###
+        if (componenNode) {
+            if (componenNode.hasOwnProperty(index)) {
+                return componenNode[index];
+            }
+
+            console.info(`dictionary: can't find translation ${tokenParts[0]} => ${index}`);
         }
 
         return dict[token] || token;
