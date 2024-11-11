@@ -1,5 +1,5 @@
-import { Trigger } from "./class-trigger.js";
 import { ApiCall } from "./class-api-call.js";
+import { Trigger } from "./class-trigger.js";
 
 export class AppCoreSettings {
     constructor(settings) {
@@ -101,7 +101,7 @@ export class AppCore {
 
         action = action.toLowerCase();
 
-        return (this.#triggger.subscribe(callBack, action));
+        return (this.#trigger.subscribe(callBack, action));
     }
 
     notify(payload = null, action) {
