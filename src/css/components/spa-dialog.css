@@ -1,22 +1,47 @@
-dialog {
-    --itp-border-radius: 5px;
-    --itp-header-height: 50px;
-    --itp-dialog-window-closer-bgcolor: rgba(255, 255, 255, 0.2);
+:root {
+    --spa-dialog-border-radius: var(--spa-border-radius, 5px);
+    --spa-dialog-header-height: 50px;
+    --spa-dialog-window-closer-bgcolor: rgba(255, 255, 255, 0.2);
 
+    /* ### dialog background/backdrop ### */
+    --spa-dialog-backdrop-color: rgba(0, 0, 0, 0.3);
+    --spa-dialog-backdrop-blur: 1px;
+
+    /* ### header ### */
+    --spa-dialog-header-font-size: 1.2em;
+    --spa-dialog-header-height: 2.5rem;
+
+    --spa-dialog-header-background-color: #373a4d;
+    --spa-dialog-header-color: #caccd7;
+    --spa-dialog-header-background: var(--spa-dialog-header-background-color) linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+
+    --spa-dialog-color: #000;
+
+    /* ### Dark mode ### */
+    .dark {
+
+        /* ### header ### */
+        --spa-dialog-header-background-color: #fff;
+        --spa-dialog-header-color: #373a4d;
+
+        --spa-dialog-color: #caccd7;
+    }
+}
+
+dialog {
     width: 90%;
     height: 96%;
     margin: 1.5rem auto;
     padding: 0;
-    background-color: var(--itp-background-color);
+    background-color: var(--content-bg-color);
     overflow: hidden;
-    border: var(--itp-border);
-    border-radius: var(--itp-border-radius);
-    /*color: var(--itp-background-color);*/
+    border: var(--spa-border);
+    border-radius: var(--spa-dialog-border-radius);
 
     /* ### blurred background ### */
     &::backdrop {
-        background-color: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(1px);
+        background-color: var(--spa-dialog-backdrop-color);
+        backdrop-filter: blur(var(--spa-dialog-backdrop-blur));
     }
 
     &.fullscreen {
@@ -32,7 +57,6 @@ dialog {
         margin: 0;
     }
 
-
     /* ### content is a flexbox ### */
     .flex {
         display: flex;
@@ -44,14 +68,14 @@ dialog {
         header {
             flex: 0 1 auto;
             position: relative;
-            height: var(--itp-header-height);
-            line-height: var(--itp-header-height);
+            height: var(--spa-dialog-header-height);
+            line-height: var(--spa-dialog-header-height);
 
             padding: 0 10px 0;
 
-            background-color: var(--mawa-lightblue);
-            color: var(--mawa-foreground-color);
-            background: var(--mawa-lightblue) linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+            background-color: var(--spa-dialog-header-background-color);
+            color: var(--spa-dialog-header-color);
+            background: var(--spa-dialog-header-background);
 
             /* optional 
         border-bottom: 1px solid rgba(100, 100, 100, 0.75);
@@ -61,7 +85,7 @@ dialog {
                 display: inline-block;
                 margin: 0;
                 font-weight: normal;
-                font-size: 1.4em;
+                font-size: var(--spa-dialog-header-font-size);
             }
 
             .icons {
@@ -71,15 +95,15 @@ dialog {
 
                 div.icon {
                     width: 50px;
-                    height: var(--itp-header-height);
-                    line-height: var(--itp-header-height);
+                    height: var(--spa-header-height);
+                    line-height: var(--spa-header-height);
                     text-align: center;
                     cursor: pointer;
                     vertical-align: top;
 
                     &:hover {
                         background-color: rgba(255, 255, 255, 0.2);
-                        background-color: var(--itp-dialog-window-closer-bgcolor);
+                        background-color: var(--spa-dialog-window-closer-bgcolor);
                     }
                 }
 
@@ -93,13 +117,13 @@ dialog {
                 border-radius: 2px;
 
                 width: 50px;
-                height: var(--itp-header-height);
+                height: var(--spa-header-height);
                 cursor: pointer;
                 text-align: center;
-                transition: var(--itp-button-transition-time);
+                transition: var(--spa-button-transition-time);
 
                 &:hover {
-                    background-color: var(--itp-dialog-window-closer-bgcolor);
+                    background-color: var(--spa-dialog-window-closer-bgcolor);
                     font-weight: bold;
                 }
             }
@@ -132,90 +156,15 @@ dialog {
             flex-grow: 1;
             flex-shrink: 1;
             flex-basis: auto;
+            color: var(--spa-dialog-color);
         }
 
         .footer {
             flex: 0 1 auto;
             padding: 0 10px 0;
-            height: var(--itp-header-height);
+            height: var(--spa-header-height);
             text-align: right;
         }
     }
-}
 
-/* Chromium delta! */
-.flex header {
-    flex: 0 1 auto;
-    position: relative;
-    height: var(--itp-header-height);
-    line-height: var(--itp-header-height);
-
-    padding: 0 10px 0;
-
-    background-color: var(--mawa-lightblue);
-    color: var(--mawa-foreground-color);
-    background: var(--mawa-lightblue) linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
-
-}
-
-.flex header h2 {
-    display: inline-block;
-    margin: 0;
-    font-weight: normal;
-    font-size: 1.4em;
-}
-
-.flex header .icons {
-    position: absolute;
-    top: 0;
-    right: 50px;
-}
-
-.flex header .icons div.icon {
-    width: 50px;
-    height: var(--itp-header-height);
-    line-height: var(--itp-header-height);
-    text-align: center;
-    cursor: pointer;
-    vertical-align: top;
-}
-
-.flex header .icons div.icon:hover {
-    background-color: var(--itp-dialog-window-closer-bgcolor);
-}
-
-.flex header .closer {
-    position: absolute;
-    display: block;
-    top: 0;
-    right: 0;
-    border-radius: 2px;
-
-    width: 50px;
-    height: var(--itp-header-height);
-    cursor: pointer;
-    text-align: center;
-    transition: var(--itp-button-transition-time);
-
-    &:hover {
-        background-color: var(--itp-dialog-window-closer-bgcolor);
-        font-weight: bold;
-    }
-
-}
-
-.flex .content {
-    padding: 10px;
-    overflow-y: auto;
-
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-}
-
-.flex .footer {
-    flex: 0 1 auto;
-    padding: 0 10px 0;
-    height: var(--itp-header-height);
-    text-align: right;
 }
