@@ -1,5 +1,4 @@
-import { Trigger } from "../classes/class-trigger.js";
-import { fromJWT } from "../tools/from-jwt.js";
+import { Trigger } from "./class-trigger.js";
 
 export class UserContext {
     #jwt;
@@ -37,8 +36,23 @@ export class UserContext {
         }
     }
 
-    jwtPayload(key) {
-        return fromJWT(this.#jwt, key);
+    fromJWT(key) {
+        if (!this.#jwt)
+            return ("");
+
+        var b64DecodeUnicode = function (str) {
+            // Going backwards: from bytestream, to percent-encoding, to original string.
+            return decodeURIComponent(atob(str).split('').map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        };
+
+        let jwtparts = b64DecodeUnicode(this.#jwt.split(".")[1]),
+            payload = JSON.parse(jwtparts);
+
+        payload = payload[key] || "";
+
+        return (payload);
     }
 
     isLoggedIn() {
