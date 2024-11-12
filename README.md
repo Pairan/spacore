@@ -8,6 +8,8 @@ A tiny SPA JavaScript toolkit
      ├─ classes (all js classes)
      ├─ components (mainly for your components)
      ├─ languages (for languagePacks)
+     ├─ tools (for factories and other tools)
+     
 ```
 
 ## Documentation
