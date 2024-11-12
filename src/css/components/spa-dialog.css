@@ -18,7 +18,7 @@
     --spa-dialog-color: #000;
 
     /* ### Dark mode ### */
-    .dark {
+    &.dark {
 
         /* ### header ### */
         --spa-dialog-header-background-color: #fff;
@@ -27,6 +27,7 @@
         --spa-dialog-color: #caccd7;
     }
 }
+
 
 dialog {
     width: 90%;
