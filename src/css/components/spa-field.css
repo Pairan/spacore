@@ -1,12 +1,23 @@
 :root {
     --spa-field-padding: 0.5rem 1rem;
     --spa-field-background: #fff;
-    --spa-field-border-color: #aaa;
+    --spa-field-border-color: var(--spa-border-color, #aaa);
     --spa-field-border: 1px solid var(--spa-field-border-color);
     --spa-field-border-radius: 5px;
     --spa-field-height: 2rem;
     --spa-field-invalid-border-color: red;
     --spa-field-valid-border-color: rgb(16, 188, 0);
+
+    --spa-field-hover-background: rgba(0, 0, 0, 0.02);
+    /*#c9cbcd*/
+    --spa-field-checkbox-checked-background: #51d95a;
+    /*#6e79d6*/
+
+
+
+    --spa-field-transition-time: 100ms;
+
+    &.dark {}
 }
 
 textarea.spa-field {
@@ -92,6 +103,11 @@ textarea.spa-field {
         background-color: color-mix(in srgb, var(--spa-field-background) 90%, var(--spa-field-invalid-border-color));
 
     }
+
+    &:hover:not(:has(input[type='checkbox'])) {
+        background-color: var(--spa-field-hover-background);
+        transition-duration: 0s;
+    }
 }
 
 .form-grid {
@@ -112,4 +128,66 @@ textarea.spa-field {
 
         }
     }
+}
+
+input[type=checkbox] {
+    --spa-field-checkbox-bacground: #dfe1e4;
+    appearance: none;
+    background-color: var(--spa-field-checkbox-bacground);
+    /* TODO fix background to val*/
+    border-radius: 72px;
+    border-style: none;
+    flex-shrink: 0;
+    height: 20px;
+    margin: 0;
+    position: relative;
+    width: 30px;
+    transition: all var(--spa-field-transition-time) ease-out;
+
+    cursor: default;
+
+    &::before {
+        bottom: -6px;
+        content: "";
+        left: -6px;
+        position: absolute;
+        right: -6px;
+        top: -6px;
+    }
+
+    &::after {
+        background-color: #fff;
+        border-radius: 50%;
+        content: "";
+        height: 1rem;
+        left: 2px;
+        position: absolute;
+        top: 2px;
+        width: 1rem;
+        cursor: pointer;
+        transition: all var(--spa-field-transition-time) ease-out;
+    }
+
+    &:hover {
+        background-color: color-mix(in srgb, var(--spa-field-checkbox-bacground), var(--spa-field-hover-background));
+        transition-duration: 0s;
+    }
+
+    &:checked {
+        background-color: var(--spa-field-checkbox-checked-background);
+
+        &::after {
+            background-color: #fff;
+            left: 12px;
+        }
+
+        &:hover {
+            background-color: color-mix(in hsl, var(--spa-field-checkbox-checked-background), var(--spa-field-hover-background));
+        }
+    }
+}
+
+
+input[type=checkbox]:checked input[type=checkbox] :focus:not(.focus-visible) {
+    outline: 0;
 }
