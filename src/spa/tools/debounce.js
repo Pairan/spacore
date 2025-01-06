@@ -4,7 +4,7 @@
  * @param delay - optinal, time in ms
  * @returns Function
  */
-function debounce(func, delay = 300) {
+export function debounce(func, delay = 300) {
   let timer;
   return (...args) => {
     clearTimeout(timer);
