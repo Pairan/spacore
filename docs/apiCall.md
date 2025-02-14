@@ -11,8 +11,18 @@ To modify the request headers you can directly access them in the class and over
 ```Javascript
 const apiPath = "/api";
 
+// ### adding the api call with default error handler ###
+const onApiError = (response) => {
+  message({
+    context: "danger",
+    text: "response",
+  });
+};
 // ### prepare a new text renderer, register pipes ###
 app.apiCall = new ApiCall(app);
+
+// ### let upcomin errors be handled with onApiError so you wont have to write it all the way! ###
+app.apiCall.setErrorHandler(onApiError);
 
 /* ### default header looks like : ###
     mode = "cors";
@@ -26,10 +36,6 @@ app.apiCall = new ApiCall(app);
         "Content-Type": "application/json",
     }
 */
-
-// ### let's change the redirect for a demo ###
-app.apiCall.redirect = "error";
-
 ```
 `ApiCall`holds a method for the most common request methods and can easily be extended to whatever is missing.
 
