@@ -1,24 +1,41 @@
 :root {
-    --spa-card-border: 1px solid rgba(0, 0, 0, 0.3);
-    --spa-card-border-radius: 5px;
-    --spa-card-bg-color: #fff;
-    --spa-card-padding: 0.5rem 1rem;
+  --spa-card-border: 1px solid rgba(0, 0, 0, 0.3);
+  --spa-card-border-radius: 5px;
+  --spa-card-bg-color: #fff;
+  --spa-card-padding-top-bottom: 0.5rem;
+  --spa-card-padding-left-right: 1rem;
 
+  --spa-card-padding: var(--spa-card-padding-top-bottom)
+    var(--spa-card-padding-left-right);
 }
 
 /* ### Card ### */
+spa-card,
 .spa-card {
-    background-color: var(--spa-card-bg-color);
-    border: var(--spa-card-border);
-    border-radius: var(--spa-card-border-radius);
-    padding: var(--spa-card-padding);
+  display: block;
+  background-color: var(--spa-card-bg-color);
+  border: var(--spa-card-border);
+  border-radius: var(--spa-card-border-radius);
+  padding: var(--spa-card-padding);
+  margin: auto;
+  position: relative;
 
-    &.with-margin {
-        margin: 0.5rem;
-    }
+  &.with-margin {
+    margin: 0.5rem;
+  }
 
-    h5 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-    }
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ### actions on a card ### */
+  .spa-card-actions {
+    position: absolute;
+    top: var(--spa-card-padding-top-bottom);
+    right: var(--spa-card-padding-left-right);
+  }
 }
