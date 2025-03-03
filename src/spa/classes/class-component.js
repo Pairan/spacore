@@ -9,6 +9,8 @@ export class ComponentSettings {
 export class Component {
   callMainAfterLoad = false;
   #mainArgs = null;
+  #group = null;
+  #ual = null;
 
   /**
    * function to run `main()` after all has been loaded
