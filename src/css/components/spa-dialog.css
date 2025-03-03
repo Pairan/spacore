@@ -1,135 +1,138 @@
 :root {
-    --spa-dialog-border-radius: var(--spa-border-radius, 5px);
-    --spa-dialog-header-height: 50px;
-    --spa-dialog-window-closer-bgcolor: rgba(255, 255, 255, 0.2);
+  --spa-dialog-border-radius: var(--spa-border-radius, 5px);
+  --spa-dialog-header-height: 50px;
+  --spa-dialog-window-closer-bgcolor: rgba(255, 255, 255, 0.2);
 
-    /* ### dialog background/backdrop ### */
-    --spa-dialog-backdrop-color: rgba(0, 0, 0, 0.3);
-    --spa-dialog-backdrop-blur: 1px;
+  /* ### dialog background/backdrop ### */
+  --spa-dialog-backdrop-color: rgba(0, 0, 0, 0.3);
+  --spa-dialog-backdrop-blur: 1px;
 
+  /* ### header ### */
+  --spa-dialog-header-font-size: 1.2em;
+  --spa-dialog-header-height: 2.5rem;
+
+  --spa-dialog-header-background-color: #373a4d;
+  --spa-dialog-header-color: #caccd7;
+  --spa-dialog-header-background: var(--spa-dialog-header-background-color)
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+
+  --spa-dialog-color: #000;
+
+  /* ### Dark mode ### */
+  &.dark {
     /* ### header ### */
-    --spa-dialog-header-font-size: 1.2em;
-    --spa-dialog-header-height: 2.5rem;
+    --spa-dialog-header-background-color: #fff;
+    --spa-dialog-header-color: #373a4d;
 
-    --spa-dialog-header-background-color: #373a4d;
-    --spa-dialog-header-color: #caccd7;
-    --spa-dialog-header-background: var(--spa-dialog-header-background-color) linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
-
-    --spa-dialog-color: #000;
-
-    /* ### Dark mode ### */
-    &.dark {
-
-        /* ### header ### */
-        --spa-dialog-header-background-color: #fff;
-        --spa-dialog-header-color: #373a4d;
-
-        --spa-dialog-color: #caccd7;
-    }
+    --spa-dialog-color: #caccd7;
+  }
 }
 
-
 dialog {
-    width: 90%;
-    height: 96%;
-    margin: 1.5rem auto;
-    padding: 0;
-    background-color: var(--content-bg-color);
-    overflow: hidden;
-    border: var(--spa-border);
-    border-radius: var(--spa-dialog-border-radius);
+  width: 90%;
+  height: 96%;
+  margin: 1.5rem auto;
+  padding: 0;
+  background-color: var(--content-bg-color);
+  overflow: hidden;
+  border: var(--spa-border);
+  border-radius: var(--spa-dialog-border-radius);
+  outline: none;
 
-    /* ### blurred background ### */
-    &::backdrop {
-        background-color: var(--spa-dialog-backdrop-color);
-        backdrop-filter: blur(var(--spa-dialog-backdrop-blur));
-    }
+  /* ### blurred background ### */
+  &::backdrop {
+    background-color: var(--spa-dialog-backdrop-color);
+    backdrop-filter: blur(var(--spa-dialog-backdrop-blur));
+  }
 
-    &.fullscreen {
-        width: 100%;
-        height: 100vh;
-    }
+  &.fullscreen {
+    width: 100%;
+    height: 100vh;
+  }
 
-    &.cover {
-        max-width: 100vw;
-        max-height: 100vh;
-        height: 100vh;
-        width: 100%;
-        margin: 0;
-    }
+  &.cover {
+    max-width: 100vw;
+    max-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+  }
 
-    /* ### content is a flexbox ### */
-    .flex {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        height: 100%;
+  /* ### content is a flexbox ### */
+  .flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 100%;
 
-        header {
-            flex: 0 1 auto;
-            position: relative;
-            height: var(--spa-dialog-header-height);
-            line-height: var(--spa-dialog-header-height);
+    header {
+      flex: 0 1 auto;
+      position: relative;
+      height: var(--spa-dialog-header-height);
+      line-height: var(--spa-dialog-header-height);
 
-            padding: 0 10px 0;
+      padding: 0 10px 0;
 
-            background-color: var(--spa-dialog-header-background-color);
-            color: var(--spa-dialog-header-color);
-            background: var(--spa-dialog-header-background);
+      background-color: var(--spa-dialog-header-background-color);
+      color: var(--spa-dialog-header-color);
+      background: var(--spa-dialog-header-background);
 
-            /* optional 
+      /* optional 
         border-bottom: 1px solid rgba(100, 100, 100, 0.75);
         */
 
-            h2 {
-                display: inline-block;
-                margin: 0;
-                font-weight: normal;
-                font-size: var(--spa-dialog-header-font-size);
-            }
+      h2 {
+        display: inline-block;
+        margin: 0;
+        font-weight: normal;
+        font-size: var(--spa-dialog-header-font-size);
+      }
 
-            .icons {
-                position: absolute;
-                top: 0;
-                right: 50px;
+      .icons {
+        position: absolute;
+        top: 0;
+        right: 50px;
 
-                div.icon {
-                    width: 50px;
-                    height: var(--spa-header-height);
-                    line-height: var(--spa-header-height);
-                    text-align: center;
-                    cursor: pointer;
-                    vertical-align: top;
+        div.icon {
+          width: 50px;
+          height: var(--spa-header-height);
+          line-height: var(--spa-header-height);
+          text-align: center;
+          cursor: pointer;
+          vertical-align: top;
 
-                    &:hover {
-                        background-color: rgba(255, 255, 255, 0.2);
-                        background-color: var(--spa-dialog-window-closer-bgcolor);
-                    }
-                }
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            background-color: var(--spa-dialog-window-closer-bgcolor);
+          }
+        }
+      }
 
-            }
+      .closer {
+        position: absolute;
+        display: block;
+        top: 0;
+        right: 0;
+        border-radius: 2px;
 
-            .closer {
-                position: absolute;
-                display: block;
-                top: 0;
-                right: 0;
-                border-radius: 2px;
+        width: 50px;
+        height: var(--spa-header-height);
+        cursor: pointer;
+        text-align: center;
+        transition: var(--spa-button-transition-time);
 
-                width: 50px;
-                height: var(--spa-header-height);
-                cursor: pointer;
-                text-align: center;
-                transition: var(--spa-button-transition-time);
+        &:hover {
+          background-color: var(--spa-dialog-window-closer-bgcolor);
+          font-weight: bold;
+        }
+      }
 
-                &:hover {
-                    background-color: var(--spa-dialog-window-closer-bgcolor);
-                    font-weight: bold;
-                }
-            }
-
-            /* ### optional icons ###
+      /* ### optional icons ###
           .icons {
             float: right;
             font-size: 1.4em;
@@ -148,24 +151,23 @@ dialog {
             }
           }
           */
-        }
-
-        .content {
-            padding: 10px;
-            overflow-y: auto;
-
-            flex-grow: 1;
-            flex-shrink: 1;
-            flex-basis: auto;
-            color: var(--spa-dialog-color);
-        }
-
-        .footer {
-            flex: 0 1 auto;
-            padding: 0 10px 0;
-            height: var(--spa-header-height);
-            text-align: right;
-        }
     }
 
+    .content {
+      padding: 10px;
+      overflow-y: auto;
+
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto;
+      color: var(--spa-dialog-color);
+    }
+
+    .footer {
+      flex: 0 1 auto;
+      padding: 0 10px 0;
+      height: var(--spa-header-height);
+      text-align: right;
+    }
+  }
 }
